@@ -27,8 +27,6 @@
 <script>
     $("#mybutton").on('click',function () {
         console.log('press button');
-
-
         $.ajax({
             type: "GET",
             url: "/testajax",
@@ -38,17 +36,12 @@
                 var str = '';
                 str = JSON.stringify(data);
                 console.log("данные" + str);
-
                 $("#mytable").html(str);
-
             }
         });
     });
-
     $("#mybutton1").on('click',function () {
         console.log('press button1');
-
-
         $.ajax({
             type: "GET",
             url: "/123",
@@ -58,14 +51,10 @@
                 var str1 = '';
                 str1 = JSON.stringify(data);
                 console.log("данные" + str1);
-
             }
         });
     });
-
-
     var chart = document.getElementById('line-chart').getContext('2d');
-
     var myChart = new Chart(chart, {
         type: 'line',
         data: {
@@ -97,5 +86,6 @@
 {% block body %}{% endblock %}
 </body>
 </html>
+
 
 

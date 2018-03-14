@@ -36,11 +36,20 @@
                 var str = '';
                 str = JSON.stringify(data);
                 console.log("данные" + str);
-                $("#mytable").html(str);
+                str = JSON.parse(str);
+
+               // $("#mytable").html
+                console.log(JSON.stringify(str.reference_chart));
+                str1 = str.reference_chart;
+                 $("#mytable").html(str1.time);
+                //str1 = JSON.parse(str.reference_chart));
+                console.log(JSON.stringify(str1.time[0]));
+                str2 = str1.time[0];
+                console.log(str2.begin_time);
             }
         });
     });
-    $("#mybutton1").on('click',function () {
+    /*$("#mybutton1").on('click',function () {
         console.log('press button1');
         $.ajax({
             type: "GET",
@@ -53,7 +62,7 @@
                 console.log("данные" + str1);
             }
         });
-    });
+    });*/
     var chart = document.getElementById('line-chart').getContext('2d');
     var myChart = new Chart(chart, {
         type: 'line',

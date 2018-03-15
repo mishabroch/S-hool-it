@@ -1,6 +1,6 @@
 //var M = 500,v_max = 10000, t0 = 40, t1 = 60, t2 = 130, t3 = 250, t4 = 560, t5 = 630, t6 = 890, t7 = 1000;
 	
-function velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
+exports.velocity_middle = function(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
 	
 	var temp;
 	var d1 = t1 - t0;
@@ -14,13 +14,13 @@ function velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
 
 //velocity_middle(500,10000, 40,  60,  130,  250,560, 630, 890, 1000);
 
-function check_velocity(v_max,v_mid ){
+exports.check_velocity = function(v_max,v_mid ){
 	if (v_mid > v_max) return 1; 
 	else return 0;
 }
 
 // x_et,  y_et - массивы
-function etalon_coords(M,t0,t1,t2,t3,t4,t5,t6,t7,step,n,v_mid,x_et,y_et){
+exports.etalon_coords = function(M,t0,t1,t2,t3,t4,t5,t6,t7,step,n,v_mid,x_et,y_et){
 		var d1 = t1 - t0;
 		var d2 = t3 - t2;
 		var d3 = t5 - t4;
@@ -46,7 +46,7 @@ function etalon_coords(M,t0,t1,t2,t3,t4,t5,t6,t7,step,n,v_mid,x_et,y_et){
 	
 //etalon_coords(5000,40,60,130,250,560,630,890,1000,15,97,4,[],[]);
 // x_model,  y_model - массивы
-function simulated_coords(t0,t1,  t2,  t3,  t4,  t5,  t6,  t7,  n,  step,  v_mid,  v_max,  x_model,  y_model){
+exports.simulated_coords = function(t0,t1,  t2,  t3,  t4,  t5,  t6,  t7,  n,  step,  v_mid,  v_max,  x_model,  y_model){
 		x_model[0] = t0; y_model[0] = 0;
 		var i, last_value = v_mid*step; 
 		var first_value = step;
@@ -122,7 +122,7 @@ function simulated_coords(t0,t1,  t2,  t3,  t4,  t5,  t6,  t7,  n,  step,  v_mid
 		}
 	}
 	
-function correction_production( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t7,  v_max,  v_mid,  step,  v_up,  dM){
+exports.correction_production = function( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t7,  v_max,  v_mid,  step,  v_up,  dM){
 		console.log(v_up,  dM);
 		var v;
 		//если попадаем в первый простой

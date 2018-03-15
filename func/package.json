@@ -1,0 +1,6 @@
+{
+  "name": "func",
+  "version": "1.0.0",
+  "description": "Functions for chart",
+  "main": "func.js"
+}

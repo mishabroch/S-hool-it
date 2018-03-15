@@ -41,11 +41,12 @@
                // $("#mytable").html
                 console.log(JSON.stringify(str.reference_chart));
                 str1 = str.reference_chart;
-                 $("#mytable").html(str1.time);
+
                 //str1 = JSON.parse(str.reference_chart));
                 console.log(JSON.stringify(str1.time[0]));
                 str2 = str1.time[0];
                 console.log(str2.begin_time);
+                $("#mytable").html(str2.begin_time);
             }
         });
     });

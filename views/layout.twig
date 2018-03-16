@@ -13,9 +13,11 @@
 </head>
 <body>
 <div class="container">
-  <h1 class="text-center">Пока большой здаровенный БОЛТ!!!</h1>
-  <input type="button" value="запрос" id="mybutton"/>
-  <input type="button" value="12345" id="mybutton1"/>
+  <h1 class="text-center"></h1>
+  <input type="button" value="Эталонный график" id="mybutton"/>
+  <input type="button" value="Текущий график" id="mybutton1"/>
+  <input type="button" value="Отрисовка" id="mybutton2"/>
+
 
 
 </div>
@@ -25,6 +27,9 @@
 <table id="mytable" class="source"></table>
 
 <script>
+    var str;
+    var str_r;
+
     $("#mybutton").on('click',function () {
         console.log('press button');
         $.ajax({
@@ -33,22 +38,89 @@
             dataType: "json",
             contentType: "application/json",
             success: function(data){
-                var str = '';
-                str = JSON.stringify(data);
-                console.log("данные" + str);
-                str = JSON.parse(str);
+                // var str1 = '';
+                var str1 = JSON.stringify(data);
+                console.log("данные" + str1);
+                str = JSON.parse(str1);
+                console.log(str);
 
-               // $("#mytable").html
-                console.log(JSON.stringify(str.reference_chart));
-                str1 = str.reference_chart;
-                 $("#mytable").html(str.time);
+
+                //var str = JSON.parse(str1);
+                //console.log(str);
+                // $("#mytable").html
+                // console.log(JSON.stringify(str.reference_chart));
+                // str1 = str.reference_chart;
+
                 //str1 = JSON.parse(str.reference_chart));
-                console.log(JSON.stringify(str1.time[0]));
-                str2 = str1.time[0];
-                console.log(str2.begin_time);
-                $("#mytable").html(str2.begin_time);
+                // console.log(JSON.stringify(str1.time[0]));
+                // str2 = str1.time[0];
+                //$("#mytable").html(str2.begin_time);
+                // console.log(str2.begin_time);
+
             }
         });
+    });
+    $("#mybutton1").on('click',function () {
+        console.log('press button1');
+        $.ajax({
+            type: "GET",
+            url: "/testajax1",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(data){
+                // var str1 = '';
+                var str2 = JSON.stringify(data);
+                console.log("данные" + str2);
+                str_r = JSON.parse(str2);
+                console.log(str_r);
+
+
+                //var str = JSON.parse(str1);
+                //console.log(str);
+                // $("#mytable").html
+                // console.log(JSON.stringify(str.reference_chart));
+                // str1 = str.reference_chart;
+
+                //str1 = JSON.parse(str.reference_chart));
+                // console.log(JSON.stringify(str1.time[0]));
+                // str2 = str1.time[0];
+                //$("#mytable").html(str2.begin_time);
+                // console.log(str2.begin_time);
+
+            }
+        });
+    });
+    $("#mybutton2").on('click',function () {
+        var data = str;
+        var data1 = str_r;
+        var chart = document.getElementById('line-chart').getContext('2d');
+        var myChart = new Chart(chart, {
+            type: 'line',
+            data: {
+                labels: Object.keys(data),
+                datasets: [{
+                    data: Object.values(data),
+                    label: "Эталонный график",
+                    borderColor: "#3e95cd",
+                    fill: false
+                }, {
+                    data: Object.values(data1),
+                    label: "Текущий график",
+                    borderColor: "#FF0000",
+                    fill: false
+                },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
     });
     /*$("#mybutton1").on('click',function () {
         console.log('press button1');
@@ -64,34 +136,9 @@
             }
         });
     });*/
-    var chart = document.getElementById('line-chart').getContext('2d');
-    var myChart = new Chart(chart, {
-        type: 'line',
-        data: {
-            labels: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
-            datasets: [{
-                data: [0,1,2],
-                label: "reference chart",
-                borderColor: "#3e95cd",
-                fill: false
-            }, {
-                data: [],
-                label: "calculated chart",
-                borderColor: "#8e5ea2",
-                fill: false
-            },
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
+
+
+
 </script>
 {% block body %}{% endblock %}
 </body>

@@ -8,8 +8,6 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
   <script src="/javascripts/index.js"></script>
-
-
 </head>
 <body>
 <div class="container">
@@ -29,15 +27,14 @@
 <script>
     var str;
     var str_r;
-
-    $("#mybutton").on('click',function () {
-        console.log('press button');
-        $.ajax({
+        $("#mybutton").on('click',function () {
+            console.log('press button');
+         $.ajax({
             type: "GET",
             url: "/testajax",
             dataType: "json",
             contentType: "application/json",
-            success: function(data){
+            success: function(data) {
                 // var str1 = '';
                 var str1 = JSON.stringify(data);
                 console.log("данные" + str1);
@@ -56,10 +53,11 @@
                 // str2 = str1.time[0];
                 //$("#mytable").html(str2.begin_time);
                 // console.log(str2.begin_time);
+               }
 
-            }
+            })
         });
-    });
+
     $("#mybutton1").on('click',function () {
         console.log('press button1');
         $.ajax({
@@ -67,7 +65,7 @@
             url: "/testajax1",
             dataType: "json",
             contentType: "application/json",
-            success: function(data){
+            success: function(data) {
                 // var str1 = '';
                 var str2 = JSON.stringify(data);
                 console.log("данные" + str2);
@@ -86,29 +84,33 @@
                 // str2 = str1.time[0];
                 //$("#mytable").html(str2.begin_time);
                 // console.log(str2.begin_time);
-
             }
-        });
-    });
-    $("#mybutton2").on('click',function () {
-        var data = str;
-        var data1 = str_r;
+        })
+            });
+        $("#mybutton2").on('click',function () {
+        var data_etalon_chart = str;
+        var data_simulated_chart = str_r;
         var chart = document.getElementById('line-chart').getContext('2d');
-        var myChart = new Chart(chart, {
+        var performance_Chart = new Chart(chart, {
             type: 'line',
             data: {
-                labels: Object.keys(data),
+                labels: Object.keys(data_etalon_chart),
                 datasets: [{
-                    data: Object.values(data),
+                    data: Object.values(data_etalon_chart),
                     label: "Эталонный график",
                     borderColor: "#3e95cd",
                     fill: false
                 }, {
-                    data: Object.values(data1),
+                    data: Object.values(data_simulated_chart),
                     label: "Текущий график",
                     borderColor: "#FF0000",
                     fill: false
-                },
+                },{
+                    data:[],
+                    label:"",
+                    borderColor:"#008000",
+                    fill:false
+                }
                 ]
             },
             options: {
@@ -122,24 +124,8 @@
             }
         })
     });
-    /*$("#mybutton1").on('click',function () {
-        console.log('press button1');
-        $.ajax({
-            type: "GET",
-            url: "/123",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(data){
-                var str1 = '';
-                str1 = JSON.stringify(data);
-                console.log("данные" + str1);
-            }
-        });
-    });*/
-
-
-
 </script>
+
 {% block body %}{% endblock %}
 </body>
 </html>

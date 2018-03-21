@@ -1,4 +1,4 @@
-//var M = 500,v_max = 10000, t0 = 40, t1 = 60, t2 = 130, t3 = 250, t4 = 560, t5 = 630, t6 = 890, t7 = 1000;
+var M = 10000,v_max = 10, t0 = 0, t1 = 45, t2 = 445, t3 = 490, t4 = 945, t5 = 990, t6 = 1395, t7 = 1440, step=15;
 
 function velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
 
@@ -12,7 +12,8 @@ function velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
     return temp;
 }
 
-//velocity_middle(500,10000, 40,  60,  130,  250,560, 630, 890, 1000);
+var v_mid=velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7);
+var n=1440/step;
 
 function check_velocity(v_max,v_mid ){
     if (v_mid > v_max) return 1;
@@ -122,66 +123,78 @@ function simulated_coords(t0,t1,  t2,  t3,  t4,  t5,  t6,  t7,  n,  step,  v_mid
     }
 }
 
-function correction_production( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t7,  v_max,  v_mid,  step,  v_up,  dM){
-    console.log(v_up,  dM);
-    var v;
+function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t7,  v_max,  v_mid,  step, n,  v_up,  dM, y_pro){
+    //console.log(v_up,  dM);
+    var v, v_pro;
+
+    var k = t/step;
+    var d1 = t1 - t0;
+    var d2 = t3 - t2;
+    var d3 = t5 - t4;
+    var d4 = t7 - t6;
     //если попадаем в первый простой
-    if ((t >= t0) && (t < t1))
+    if  ((t >= t0) && (t < t1))
     {
-        dM = 0.0;
-        if (M_act<dM)
+        v_pro = (M - M_act) / (1440 - t - (t1 - t) - d2 - d3 - d4);
+        dM = 0.0 ;
+        if  (M_act<dM)
         {
-            dM -= M_act, v_up = 0.0;
+            dM -= M_act, v_up = 0.0 ;
         }
-        else { dM = 0.0; v_up = 0.0; }
+        else { dM = 0.0; v_up = 0.0 ; }
     }
 
     //если попадаем во второй простой
-    if ((t > t2) && (t < t3))
+    if  ((t > t2) && (t < t3))
     {
+        v_pro = (M - M_act) / (1440 - t - (t3 - t) - d3 - d4);
         dM = v_mid*(t - (t1 - t0));
-        if (M_act<dM)
+        if  (M_act<dM)
         {
-            dM -= M_act, v_up = 0.0;
+            dM -= M_act, v_up = 0.0 ;
         }
-        else { dM = 0.0; v_up = 0.0; }
+        else { dM = 0.0 ; v_up = 0.0 ; }
     }
 
     //если попадаем в третий простой
-    if ((t > t4) && (t < t5))
+    if  ((t > t4) && (t < t5))
     {
+        v_pro = (M - M_act) / (1440 - t - (t5 - t) - d4);
         dM = v_mid*(t - ((t1 - t0) + (t3 - t2)));
-        if (M_act<dM)
+        if  (M_act<dM)
         {
-            dM -= M_act, v_up = 0.0;
+            dM -= M_act, v_up = 0.0 ;
         }
-        else { dM = 0.0; v_up = 0.0; }
+        else { dM = 0.0 ; v_up = 0.0 ; }
     }
 
     //если попадаем в четвёртый простой
-    if ((t > t6) && (t <= t7))
+    if  ((t > t6) && (t <= t7))
     {
+        v_pro = 0;//уже не работаем
         dM = v_mid*(t - ((t1 - t0) + (t3 - t2) + (t5 - t4)));
-        if (M_act<dM)
+        if  (M_act<dM)
         {
-            dM -= M_act, v_up = 0.0;
+            dM -= M_act, v_up = 0.0 ;
         }
-        else { dM = 0.0; v_up = 0.0; }
+        else { dM = 0.0 ; v_up = 0.0 ; }
     }
 
     // если попадаем во время работы первой смены
-    if ((t <= t2) && (t >= t1))
-    {	//текущее значение вработки меньше эталонного
+    if  ((t <= t2) && (t >= t1))
+    {
+        v_pro = (M - M_act) / (1440 - t - d2 - d3 - d4);
+        //текущее значение вработки меньше эталонного
         dM = v_mid*(t - (t1 - t0));
         //текущая скорость в узле
         v = M_act / (t - (t1 - t0));
-        if (M_act<dM)//необходимо увеличение скорости в узле
+        if  (M_act<dM)//необходимо увеличение скорости в узле
         {	//если текущая скорость меньше максимальной то пересчитываем оптимальную скорость, либо увеличиваем до максимума
-            if (v<v_max)
+            if  (v<v_max)
             {
                 v_up = (v_mid *(t + step - (t1 - t0)) - M_act) / step;
                 //если оптимальная скосрость получается больше максимальной, то увеличиваем до максимума
-                if (v_up>v_max) v_up = v_max;
+                if  (v_up>v_max) v_up = v_max;
             }
             else v_up = v_max;
             //разница выработки на текущем шаге
@@ -189,23 +202,25 @@ function correction_production( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t
         }
         else
         {
-            dM = 0.0; v_up = 0.0;
+            dM = 0.0 ; v_up = 0.0 ;
         }
     }
 
     //если попадаем во время работы второй смены
-    if ((t <= t4) && (t >= t3))
-    {	//текущее значение вработки меньше эталонного
+    if  ((t <= t4) && (t >= t3))
+    {
+        v_pro = (M - M_act) / (1440 - t - d3 - d4);
+        //текущее значение вработки меньше эталонного
         dM = v_mid*(t - ((t1 - t0) + (t3 - t2)));
         //текущая скорость в узле
         v = M_act / (t - ((t1 - t0) + (t3 - t2)));
-        if (M_act<dM)//необходимо увеличение скорости в узле
+        if  (M_act<dM)//необходимо увеличение скорости в узле
         {	//если текущая скорость меньше максимальной то пересчитываем оптимальную скорость, либо увеличиваем до максимума
-            if (v<v_max)
+            if  (v<v_max)
             {
                 v_up = (v_mid *(t + step - ((t1 - t0) + (t3 - t2))) - M_act) / step;
                 //если оптимальная скосрость получается больше максимальной, то увеличиваем до максимума
-                if (v_up>v_max) v_up = v_max;
+                if  (v_up>v_max) v_up = v_max;
             }
             else v_up = v_max;
             //разница выработки на текущем шаге
@@ -213,23 +228,25 @@ function correction_production( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t
         }
         else
         {
-            dM = 0.0; v_up = 0.0;
+            dM = 0.0 ; v_up = 0.0 ;
         }
     }
 
     //если попадаем во время работы третьей смены
-    if ((t <= t6) && (t >= t5))
-    {	//текущее значение вработки меньше эталонного
+    if  ((t <= t6) && (t >= t5))
+    {
+        v_pro = (M - M_act) / (1440 - t - d4);
+        //текущее значение вработки меньше эталонного
         dM = v_mid*(t - ((t1 - t0) + (t3 - t2) + (t5 - t4)));
         //текущая скорость в узле
         v = M_act / (t - ((t1 - t0) + (t3 - t2) + (t5 - t4)));
-        if (M_act<dM)//необходимо увеличение скорости в узле
+        if  (M_act<dM)//необходимо увеличение скорости в узле
         {	//если текущая скорость меньше максимальной то пересчитываем оптимальную скорость, либо увеличиваем до максимума
-            if (v<v_max)
+            if  (v<v_max)
             {
                 v_up = (v_mid *(t + step - ((t1 - t0) + (t3 - t2) + (t5 - t4))) - M_act) / step;
                 //если оптимальная скосрость получается больше максимальной, то увеличиваем до максимума
-                if (v_up>v_max) v_up = v_max;
+                if  (v_up>v_max) v_up = v_max;
             }
             else v_up = v_max;
             //разница выработки на текущем шаге
@@ -237,11 +254,26 @@ function correction_production( M_act,  t,  t0,  t1,  t2,  t3,  t4,  t5,  t6,  t
         }
         else
         {
-            dM = 0.0; v_up = 0.0;
+            dM = 0.0 ; v_up = 0.0 ;
         }
     }
-    console.log(v_up,  dM);
+
+    if  (v_pro>v_max) v_pro = v_max;
+    y_pro[k] = M_act;
+    for (var i = k + 1; i <= n; i++)//цикл для вичисления координат "хвоста" эталона, начиная с текущего момента
+    {
+        t += step;
+        if  (((t > t0) && (t < t1)) || ((t > t2) && (t < t3)) || ((t > t4) && (t < t5)) || ((t > t6) && (t <= t7)))
+        {
+            y_pro[i] = y_pro[i - 1];
+        }
+    else y_pro[i] = y_pro[i - 1] + v_pro*step;
+
+    }
+    console.log(v_up,  dM, y_pro);
 }
+
+
 
 //correction_production( 2000,  120,  40,60,130,250,560,630,890,1000,  10000,  4000,  15,  0.0,  0.0);
 

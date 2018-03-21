@@ -24,8 +24,8 @@
 </div>
 <table id="mytable" class="source"></table>
 <div>
-  <textarea id="text"> Разность производительность: 1505.41 </textarea>
-  <textarea id="text1" > Требуемая скорость: 10 </textarea>
+  <textarea id="text"> Разность производительности: </textarea>
+  <textarea id="text1" > Требуемая скорость: </textarea>
     {#<script>
 
     </script><#}
@@ -37,6 +37,7 @@
     var str_r;
     var str_rr;
     var str_rrr;
+    var str_rrrr;
         $("#mybutton").on('click',function () {
             console.log('press button');
          $.ajax({
@@ -150,7 +151,7 @@
             }
 
 
-        })
+        });
 
 
 
@@ -163,7 +164,10 @@
                     var str4 = JSON.stringify(data);
                     console.log("данные" + str4);
                     str_rrr = JSON.parse(str4);
-                    str_rrr = document.getElementById('text').value;
+                    str_rrr = document.getElementById('text');
+                    str_rrrr = document.getElementById('text1');
+                    str_rrr.innerHTML = "Разность производительности: " + "???"
+                    str_rrrr.innerHTML = "Требуемая скорость: " + "???"
                     console.log(str_rr);
                 }
             })

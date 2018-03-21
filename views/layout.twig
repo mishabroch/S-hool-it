@@ -14,8 +14,8 @@
   <h1 class="text-center"></h1>
   <input type="button" value="Эталонный график" id="mybutton"/>
   <input type="button" value="Текущий график" id="mybutton1"/>
-  <input type="button" value="Отрисовка" id="mybutton2"/>
-
+  <input type="button" value="Коррекционный график" id="mybutton2"/>
+  <input type="button" value="Отрисовка" id="mybutton3"/>
 
 
 </div>
@@ -27,6 +27,7 @@
 <script>
     var str;
     var str_r;
+    var str_rr;
         $("#mybutton").on('click',function () {
             console.log('press button');
          $.ajax({
@@ -87,10 +88,26 @@
             }
         })
             });
-        $("#mybutton2").on('click',function () {
+    $("#mybutton2").on('click',function () {
+    $.ajax({
+        type: "GET",
+        url: "/testajax2",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var str3 = JSON.stringify(data);
+            console.log("данные" + str3);
+            str_rr = JSON.parse(str3);
+            console.log(str_rr);
+        }
+      })
+    });
+
+        $("#mybutton3").on('click',function () {
         var data_etalon_chart = str;
         var data_simulated_chart = str_r;
-        var chart = document.getElementById('line-chart').getContext('2d');
+        var data_correction_production = str_rr;
+            var chart = document.getElementById('line-chart').getContext('2d');
         var performance_Chart = new Chart(chart, {
             type: 'line',
             data: {
@@ -106,8 +123,8 @@
                     borderColor: "#FF0000",
                     fill: false
                 },{
-                    data:[],
-                    label:"",
+                    data:Object.values(data_correction_production),
+                    label:"Коррекционный график",
                     borderColor:"#008000",
                     fill:false
                 }

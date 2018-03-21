@@ -1,4 +1,4 @@
-var M = 10000,v_max = 10, t0 = 0, t1 = 45, t2 = 445, t3 = 490, t4 = 945, t5 = 990, t6 = 1395, t7 = 1440, step=15;
+var M = 10000,v_max = 10, t0 = 0, t1 = 45, t2 = 445, t3 = 490, t4 = 945, t5 = 990, t6 = 1395, t7 = 1440, step=15,tt=705;
 
 function velocity_middle(M,v_max,t0,t1,t2,t3,t4,t5,t6,t7) {
 
@@ -128,6 +128,8 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
     var v, v_pro;
 
     var k = t/step;
+	//console.log(t);
+	//console.log(k);
     var d1 = t1 - t0;
     var d2 = t3 - t2;
     var d3 = t5 - t4;
@@ -260,6 +262,7 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
 
     if  (v_pro>v_max) v_pro = v_max;
     y_pro[k] = M_act;
+	//console.log(y_pro[k]);
     for (var i = k + 1; i <= n; i++)//цикл для вичисления координат "хвоста" эталона, начиная с текущего момента
     {
         t += step;
@@ -268,9 +271,10 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
             y_pro[i] = y_pro[i - 1];
         }
     else y_pro[i] = y_pro[i - 1] + v_pro*step;
-
+		//console.log(y_pro[i]);
     }
-    console.log(v_up,  dM, y_pro);
+   // console.log(v_up,  dM, y_pro);
+   //return y_pro[i];
 }
 
 

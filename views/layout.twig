@@ -76,24 +76,10 @@
             dataType: "json",
             contentType: "application/json",
             success: function(data) {
-                // var str1 = '';
                 var str2 = JSON.stringify(data);
                 console.log("данные" + str2);
                 str_r = JSON.parse(str2);
                 console.log(str_r);
-
-
-                //var str = JSON.parse(str1);
-                //console.log(str);
-                // $("#mytable").html
-                // console.log(JSON.stringify(str.reference_chart));
-                // str1 = str.reference_chart;
-
-                //str1 = JSON.parse(str.reference_chart));
-                // console.log(JSON.stringify(str1.time[0]));
-                // str2 = str1.time[0];
-                //$("#mytable").html(str2.begin_time);
-                // console.log(str2.begin_time);
             }
         })
             });

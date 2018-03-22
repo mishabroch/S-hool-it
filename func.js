@@ -259,8 +259,12 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
             dM = 0.0 ; v_up = 0.0 ;
         }
     }
-
-    if  (v_pro>v_max) v_pro = v_max;
+    var f = false;
+    if  (v_pro>v_max)
+    {
+        v_pro = v_max;
+        f = true;
+    }
     y_pro[k] = M_act;
     //console.log(y_pro[k]);
     for (var i = k + 1; i <= n; i++)//цикл для вичисления координат "хвоста" эталона, начиная с текущего момента
@@ -278,7 +282,13 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
         //console.log(dM, );
     }
     console.log(v_up,  dM);
-    var res_str3 = '{'+  '\"' + 'dM' + '\":\"' + dM +'\",' + '\"' + 'v_pro' + '\":\"' + v_pro +'\"' +  '}';
+
+
+    if(f) {
+        var res_str3 = '{' + '\"' + 'dM' + '\":\"' + dM.toFixed(0) + '\",' + '\"' + 'v_pro' + '\":\"' + " Недостижима " + '\"' + '}';
+        return res_str3
+    }
+    var res_str3 = '{'+  '\"' + 'dM' + '\":\"' + dM.toFixed(0) +'\",' + '\"' + 'v_pro' + '\":\"' + v_pro +'\"' +  '}';
 
     //console.log(res_str3);
     return res_str3;

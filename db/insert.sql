@@ -11,13 +11,10 @@ insert into requirement_classes (id_name, target_model_class_id, target_model_id
 insert into requirement_classes (id_name, target_model_class_id, target_model_id) values ('Target performance', 1, 3);
 
 
-insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T01:00', '2018-01-01T01:15');
-insert into work_calendars (descr, begin_date, end_date) values ('Repair', '2018-01-01T01:15', '2018-01-01T05:00');
-insert into work_calendars (descr, begin_date, end_date) values ('Working', '2018-01-01T05:00', '2018-01-01T09:00');
-insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T09:00', '2018-01-01T09:15');
-insert into work_calendars (descr, begin_date, end_date) values ('Working', '2018-01-01T09:15', '2018-01-01T17:00');
-insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T17:00', '2018-01-01T17:15');
-insert into work_calendars (descr, begin_date, end_date) values ('Working', '2018-01-01T17:15', '2018-01-02T01:00');
+insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T00:00', '2018-01-01T00:45');
+insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T07:30', '2018-01-01T08:15');
+insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T15:45', '2018-01-01T16:30');
+insert into work_calendars (descr, begin_date, end_date) values ('Change', '2018-01-01T23:15', '2018-01-02T00:00');
 
 
 insert into params (name, equip_id) values ('Max speed', 1);
@@ -44,4 +41,18 @@ insert into param_values (param_id, value, timestamp) values (3, '950', '2018-01
 insert into param_values (param_id, value, timestamp) values (3, '1060', '2018-01-01T03:15');
 insert into param_values (param_id, value, timestamp) values (3, '1170', '2018-01-01T03:30');
 insert into param_values (param_id, value, timestamp) values (3, '1300', '2018-01-01T03:45');
+insert into param_values (param_id, value, timestamp) values (3, '1310', '2018-01-01T04:00');
+insert into param_values (param_id, value, timestamp) values (3, '1400', '2018-01-01T04:15');
+insert into param_values (param_id, value, timestamp) values (3, '1500', '2018-01-01T04:30');
+insert into param_values (param_id, value, timestamp) values (3, '1570', '2018-01-01T04:45');
+insert into param_values (param_id, value, timestamp) values (3, '1610', '2018-01-01T05:00');
+insert into param_values (param_id, value, timestamp) values (3, '1700', '2018-01-01T05:15');
+insert into param_values (param_id, value, timestamp) values (3, '1750', '2018-01-01T05:30');
+insert into param_values (param_id, value, timestamp) values (3, '1860', '2018-01-01T05:45');
+insert into param_values (param_id, value, timestamp) values (3, '1910', '2018-01-01T06:00');
+insert into param_values (param_id, value, timestamp) values (3, '2000', '2018-01-01T06:15');
+insert into param_values (param_id, value, timestamp) values (3, '2110', '2018-01-01T06:30');
+insert into param_values (param_id, value, timestamp) values (3, '2200', '2018-01-01T06:45');
+
+
 

@@ -31,28 +31,37 @@ insert into param_values (param_id, value, timestamp) values (3, '0', '2018-01-0
 insert into param_values (param_id, value, timestamp) values (3, '0', '2018-01-01T00:45');
 insert into param_values (param_id, value, timestamp) values (3, '120', '2018-01-01T01:00');
 insert into param_values (param_id, value, timestamp) values (3, '250', '2018-01-01T01:15');
-insert into param_values (param_id, value, timestamp) values (3, '300', '2018-01-01T01:30');
-insert into param_values (param_id, value, timestamp) values (3, '390', '2018-01-01T01:45');
+insert into param_values (param_id, value, timestamp) values (3, '320', '2018-01-01T01:30');
+insert into param_values (param_id, value, timestamp) values (3, '400', '2018-01-01T01:45');
 insert into param_values (param_id, value, timestamp) values (3, '500', '2018-01-01T02:00');
-insert into param_values (param_id, value, timestamp) values (3, '610', '2018-01-01T02:15');
-insert into param_values (param_id, value, timestamp) values (3, '730', '2018-01-01T02:30');
-insert into param_values (param_id, value, timestamp) values (3, '830', '2018-01-01T02:45');
-insert into param_values (param_id, value, timestamp) values (3, '950', '2018-01-01T03:00');
-insert into param_values (param_id, value, timestamp) values (3, '1060', '2018-01-01T03:15');
-insert into param_values (param_id, value, timestamp) values (3, '1170', '2018-01-01T03:30');
-insert into param_values (param_id, value, timestamp) values (3, '1300', '2018-01-01T03:45');
+insert into param_values (param_id, value, timestamp) values (3, '600', '2018-01-01T02:15');
+insert into param_values (param_id, value, timestamp) values (3, '700', '2018-01-01T02:30');
+insert into param_values (param_id, value, timestamp) values (3, '800', '2018-01-01T02:45');
+insert into param_values (param_id, value, timestamp) values (3, '900', '2018-01-01T03:00');
+insert into param_values (param_id, value, timestamp) values (3, '1000', '2018-01-01T03:15');
+insert into param_values (param_id, value, timestamp) values (3, '1100', '2018-01-01T03:30');
+insert into param_values (param_id, value, timestamp) values (3, '1210', '2018-01-01T03:45');
 insert into param_values (param_id, value, timestamp) values (3, '1310', '2018-01-01T04:00');
-insert into param_values (param_id, value, timestamp) values (3, '1400', '2018-01-01T04:15');
-insert into param_values (param_id, value, timestamp) values (3, '1500', '2018-01-01T04:30');
-insert into param_values (param_id, value, timestamp) values (3, '1570', '2018-01-01T04:45');
-insert into param_values (param_id, value, timestamp) values (3, '1610', '2018-01-01T05:00');
-insert into param_values (param_id, value, timestamp) values (3, '1700', '2018-01-01T05:15');
-insert into param_values (param_id, value, timestamp) values (3, '1750', '2018-01-01T05:30');
-insert into param_values (param_id, value, timestamp) values (3, '1860', '2018-01-01T05:45');
-insert into param_values (param_id, value, timestamp) values (3, '1910', '2018-01-01T06:00');
-insert into param_values (param_id, value, timestamp) values (3, '2000', '2018-01-01T06:15');
-insert into param_values (param_id, value, timestamp) values (3, '2110', '2018-01-01T06:30');
-insert into param_values (param_id, value, timestamp) values (3, '2200', '2018-01-01T06:45');
+insert into param_values (param_id, value, timestamp) values (3, '1410', '2018-01-01T04:15');
+insert into param_values (param_id, value, timestamp) values (3, '1510', '2018-01-01T04:30');
+insert into param_values (param_id, value, timestamp) values (3, '1620', '2018-01-01T04:45');
+insert into param_values (param_id, value, timestamp) values (3, '1720', '2018-01-01T05:00');
+insert into param_values (param_id, value, timestamp) values (3, '1830', '2018-01-01T05:15');
+insert into param_values (param_id, value, timestamp) values (3, '1950', '2018-01-01T05:30');
+insert into param_values (param_id, value, timestamp) values (3, '2050', '2018-01-01T05:45');
+insert into param_values (param_id, value, timestamp) values (3, '2150', '2018-01-01T06:00');
+insert into param_values (param_id, value, timestamp) values (3, '2260', '2018-01-01T06:15');
+insert into param_values (param_id, value, timestamp) values (3, '2360', '2018-01-01T06:30');
+insert into param_values (param_id, value, timestamp) values (3, '2450', '2018-01-01T06:45');
+insert into param_values (param_id, value, timestamp) values (3, '2560', '2018-01-01T07:00');
+insert into param_values (param_id, value, timestamp) values (3, '2660', '2018-01-01T07:15');
+insert into param_values (param_id, value, timestamp) values (3, '2760', '2018-01-01T07:30');
+insert into param_values (param_id, value, timestamp) values (3, '2760', '2018-01-01T07:45');
+insert into param_values (param_id, value, timestamp) values (3, '2760', '2018-01-01T08:00');
+insert into param_values (param_id, value, timestamp) values (3, '2760', '2018-01-01T08:15');
+insert into param_values (param_id, value, timestamp) values (3, '2880', '2018-01-01T08:30');
+insert into param_values (param_id, value, timestamp) values (3, '2980', '2018-01-01T08:45');
+
 
 
 

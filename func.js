@@ -288,7 +288,7 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
         var res_str3 = '{' + '\"' + 'dM' + '\":\"' + dM.toFixed(0) + '\",' + '\"' + 'v_pro' + '\":\"' + " Недостижима " + '\"' + '}';
         return res_str3
     }
-    var res_str3 = '{'+  '\"' + 'dM' + '\":\"' + dM.toFixed(0) +'\",' + '\"' + 'v_pro' + '\":\"' + v_pro +'\"' +  '}';
+    var res_str3 = '{'+  '\"' + 'dM' + '\":\"' + dM.toFixed(0) +'\",' + '\"' + 'v_pro' + '\":\"' + v_pro.toFixed(1) +'\"' +  '}';
 
     //console.log(res_str3);
     return res_str3;

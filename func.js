@@ -278,7 +278,7 @@ function correction_production( M_act,  t, M,  t0,  t1,  t2,  t3,  t4,  t5,  t6,
         //console.log(dM, );
     }
     console.log(v_up,  dM);
-    var res_str3 = '{'+ '\"' + dM + '\":\"' + v_pro + '\"}';
+    var res_str3 = '{'+  '\"' + 'dM' + '\":\"' + dM +'\",' + '\"' + 'v_pro' + '\":\"' + v_pro +'\"' +  '}';
 
     //console.log(res_str3);
     return res_str3;

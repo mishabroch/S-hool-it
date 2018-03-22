@@ -8,27 +8,40 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
   <script src="/javascripts/index.js"></script>
+  <style>
+    .mycenter {
+      width: 550px; /* Ширина элемента в пикселах */
+      padding: 10px; /* Поля вокруг текста */
+      margin: auto; /* Выравниваем по центру */
+    }
+  </style>
+
+
 </head>
 <body>
-<div class="container">
-  <h1 class="text-center"></h1>
-  <input type="button" value="Эталонный график" id="mybutton"/>
-  <input type="button" value="Текущий график" id="mybutton1"/>
-  <input type="button" value="Коррекционный график" id="mybutton2"/>
-  <input type="button" value="Отрисовка" id="mybutton3"/>
-
+<div class="mycenter" class="text-center">
+  <h1 class="center"></h1>
+  <div class="grid">
+  <div class="row">
+    <h1 class="text-center">
+        <input type="button" class="button primary" value="Эталонный график" id="mybutton"/>
+        <input type="button" class="button alert" value="Текущий график" id="mybutton1"/>
+        <input type="button" class="button success" value="Коррекционный график" id="mybutton2"/>
+        <input type="button" class="button primary square outline"  value="&#10004" id="mybutton3"/>
+    </h1>
+  </div>
+</div>
+</div>
+<div>
 
 </div>
 <div class="container">
-  <canvas id="line-chart"></canvas>
+  <canvas id="line-chart" width="720" height="350"></canvas>
 </div>
 <table id="mytable" class="source"></table>
 <div>
-  <textarea id="text"> Разность производительности: </textarea>
-  <textarea id="text1" > Требуемая скорость: </textarea>
-    {#<script>
-
-    </script><#}
+  <textarea id="text"> Разность производительности:</textarea>
+  <textarea id="text1"> Требуемая скорость:</textarea>
 
 </div>
 
@@ -38,36 +51,22 @@
     var str_rr;
     var str_rrr;
     var str_rrrr;
-        $("#mybutton").on('click',function () {
+    $("#mybutton").on('click',function () {
             console.log('press button');
-         $.ajax({
-            type: "GET",
-            url: "/testajax",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(data) {
-                // var str1 = '';
-                var str1 = JSON.stringify(data);
-                console.log("данные" + str1);
-                str = JSON.parse(str1);
-                console.log(str);
+               $.ajax({
+                   type: "GET",
+                   url: "/testajax",
+                   dataType: "json",
+                   contentType: "application/json",
+                   success: function(data) {
+                       var str1 = JSON.stringify(data);
+                       console.log("данные" + str1);
+                       str = JSON.parse(str1);
+                       console.log(str);
+                   }
 
-
-                //var str = JSON.parse(str1);
-                //console.log(str);
-                // $("#mytable").html
-                // console.log(JSON.stringify(str.reference_chart));
-                // str1 = str.reference_chart;
-
-                //str1 = JSON.parse(str.reference_chart));
-                // console.log(JSON.stringify(str1.time[0]));
-                // str2 = str1.time[0];
-                //$("#mytable").html(str2.begin_time);
-                // console.log(str2.begin_time);
-               }
-
-            })
-        });
+               })
+    });
 
     $("#mybutton1").on('click',function () {
         console.log('press button1');
@@ -125,17 +124,17 @@
                 datasets: [{
                     data: Object.values(data_etalon_chart),
                     label: "Эталонный график",
-                    borderColor: "#3e95cd",
+                    borderColor: "#0050ef",
                     fill: false
                 }, {
                     data: Object.values(data_simulated_chart),
                     label: "Текущий график",
-                    borderColor: "#FF0000",
+                    borderColor: "#ce352c",
                     fill: false
                 },{
                     data:Object.values(data_correction_production),
                     label:"Коррекционный график",
-                    borderColor:"#008000",
+                    borderColor:"#60a917",
                     fill:false
                 }
                 ]
@@ -162,12 +161,16 @@
                 contentType: "application/json",
                 success: function (data) {
                     var str4 = JSON.stringify(data);
-                    console.log("данные" + str4);
                     str_rrr = JSON.parse(str4);
+                    console.log("данные" + str4);
+                    var str5 = str_rrr.dM;
+                    var str6 = str_rrr.v_pro;
+
+                    console.log(str5);
                     str_rrr = document.getElementById('text');
                     str_rrrr = document.getElementById('text1');
-                    str_rrr.innerHTML = "Разность производительности: " + "???"
-                    str_rrrr.innerHTML = "Требуемая скорость: " + "???"
+                    str_rrr.innerHTML = "Разность производительности: " + str5;
+                    str_rrrr.innerHTML = "Требуемая скорость: " + str6;
                     console.log(str_rr);
                 }
             })
